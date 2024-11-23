@@ -6,10 +6,15 @@ authors = [ "John Rinehart <johnrichardrinehart@gmail.com>" ]
 
 [lib]
 name = "fu"
-path = "src/lib.rs"
+path = "src/lib/lib.rs"
 
 [[bin]]
 name = "f-u"
 path = "src/bin/main.rs"
 
 [dependencies]
+
+[build-dependencies]
+bindgen = "0.65.1"
+pkg-config = "0.3.31"
+cc = "1.2.1"
