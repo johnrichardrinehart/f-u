@@ -1,2 +1,7 @@
 *.sw?
 .direnv
+
+
+# Added by cargo
+
+/target

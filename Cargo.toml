@@ -1,0 +1,15 @@
+[package]
+name = "f-u"
+version = "0.1.0"
+edition = "2021"
+authors = [ "John Rinehart <johnrichardrinehart@gmail.com>" ]
+
+[lib]
+name = "fu"
+path = "src/lib.rs"
+
+[[bin]]
+name = "f-u"
+path = "src/bin/main.rs"
+
+[dependencies]
