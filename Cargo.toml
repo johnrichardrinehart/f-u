@@ -9,11 +9,12 @@ name = "fu"
 path = "src/lib/lib.rs"
 
 [[bin]]
-name = "f-u"
+name = "fu-bin"
 path = "src/bin/main.rs"
 
 [dependencies]
+cxx = "1.0.131"
 
 [build-dependencies]
-bindgen = "0.70.1"
+cxx-build = "1.0.131"
 pkg-config = "0.3.31"
