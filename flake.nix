@@ -21,9 +21,7 @@
       in
       rec {
         packages = {
-          default = pkgs.callPackage ./package.nix {
-            inherit (pkgs.rustPlatform) buildRustPackage;
-          };
+          default = pkgs.callPackage ./package.nix {};
         };
         devShells = {
           default = packages.default.overrideAttrs (old: {
