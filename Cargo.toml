@@ -15,5 +15,6 @@ path = "src/bin/main.rs"
 [dependencies]
 
 [build-dependencies]
-bindgen = "0.70.1"
+#bindgen = "0.70.1"
+bindgen = { git = "https://github.com/johnrichardrinehart/rust-bindgen", rev = "81fba233fd727ca0fea86eba7de74ac31428b71d" }
 pkg-config = "0.3.31"
