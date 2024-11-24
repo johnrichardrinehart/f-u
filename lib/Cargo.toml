@@ -1,0 +1,15 @@
+[package]
+name = "libf-u"
+version = "0.1.0"
+edition = "2021"
+authors = [ "John Rinehart <johnrichardrinehart@gmail.com>" ]
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+cxx = "1.0.131"
+
+[build-dependencies]
+cxx-build = "1.0.131"
+pkg-config = "0.3.31"

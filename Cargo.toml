@@ -1,20 +1,7 @@
-[package]
-name = "f-u"
-version = "0.1.0"
-edition = "2021"
-authors = [ "John Rinehart <johnrichardrinehart@gmail.com>" ]
+[workspace]
+members = [
+  "bin",
+  "lib",
+]
+resolver = "2"
 
-[lib]
-name = "fu"
-path = "src/lib/lib.rs"
-
-[[bin]]
-name = "fu-bin"
-path = "src/bin/main.rs"
-
-[dependencies]
-cxx = "1.0.131"
-
-[build-dependencies]
-cxx-build = "1.0.131"
-pkg-config = "0.3.31"
