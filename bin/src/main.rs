@@ -9,5 +9,7 @@ fn main() {
     for num in 0..3 {
         println!("{}", pluralize_dogs(num));
     }
-    libf_u::ffi::read_flake();
+
+    let flake = libf_u::ffi::get_flake("github:nixos/nixpkgs".to_string(), true);
+    println!("Name is: {}", flake.get_name());
 }

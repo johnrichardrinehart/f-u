@@ -7,7 +7,9 @@ pub mod ffi {
         type Flake;
         type FlakeInput;
 
-        fn read_flake() -> UniquePtr<Flake>;
+        fn get_name(self: &Flake) -> String;
+
+        fn get_flake(flakeRef: String, allowLookup: bool) -> UniquePtr<Flake>;
 
         // : is necessary when there's more than one `type`.
         fn list_inputs(self: &Flake) -> UniquePtr<CxxVector<FlakeInput>>;
