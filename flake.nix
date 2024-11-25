@@ -21,7 +21,7 @@
       in
       rec {
         packages = {
-          default = pkgs.callPackage ./package.nix {};
+          default = pkgs.callPackage ./package.nix { };
         };
         devShells = {
           default = packages.default.overrideAttrs (old: {

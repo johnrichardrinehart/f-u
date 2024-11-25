@@ -20,7 +20,7 @@ rustPlatform.buildRustPackage {
 
   src = ./.;
 
-  cargoHash = "sha256-dziLvZb1QVhDly+OjkSMU6+XB5+7GFOZZ8GFENk9UL8=";
+  cargoHash = "sha256-ZLO/ledIKGku5X9nskFj1YCsjYcbrmmUIB5noMggoVw=";
 
   nativeBuildInputs = [
     clang
@@ -35,5 +35,5 @@ rustPlatform.buildRustPackage {
     nix
   ];
 
-  RUST_BACKTRACE="full"; # remove when bindgen works
+  RUST_BACKTRACE = "full"; # remove when bindgen works
 }
