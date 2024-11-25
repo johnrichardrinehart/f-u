@@ -5,8 +5,8 @@
 
 namespace foo {
 
-std::unique_ptr<Flake> read_flake() {
-	return std::make_unique<Flake>();
+rust::String Flake::get_name() const {
+	return this->name;
 }
 
 Flake::~Flake() { }
@@ -14,6 +14,25 @@ Flake::~Flake() { }
 std::unique_ptr<std::vector<FlakeInput>> Flake::list_inputs() const {
   std::vector<FlakeInput> vec{ FlakeInput() };
   return std::make_unique<std::vector<FlakeInput>>(vec);
+}
+
+std::unique_ptr<Flake> get_flake(rust::String flakeRef, bool allowLookup) {
+	nix::initNix(true);
+	nix::initGC();
+
+	nix::fetchers::Settings fetchSettings;
+	nix::FlakeRef r = nix::parseFlakeRef(fetchSettings, flakeRef.c_str());
+
+	bool readOnly = false;
+	nix::EvalSettings settings = nix::EvalSettings{readOnly, {}};
+
+	auto store = nix::openStore();
+
+	auto state = nix::EvalState({}, store, fetchSettings, settings);
+
+	nix::flake::Flake f = nix::flake::getFlake(state, r, allowLookup);
+
+	return std::make_unique<Flake>(Flake{ name: "abc" });
 }
 
 rust::String pluralize(
