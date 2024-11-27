@@ -6,3 +6,7 @@ authors = [ "John Rinehart <johnrichardrinehart@gmail.com>" ]
 
 [dependencies]
 libf-u = { path = "../lib" }
+
+[profile.dev]
+debug = true
+opt-level = 0

@@ -4,13 +4,15 @@
 #include <memory>
 #include "rust/cxx.h"
 
-#include "nix/english.hh"
+#include "nix/common-eval-args.hh"
+//#include "nix/english.hh"
 #include "nix/eval.hh"
-#include "nix/eval-gc.hh"
+//#include "nix/eval-gc.hh"
 #include "nix/eval-settings.hh"
 #include "nix/fetch-settings.hh"
 #include "nix/flake/flake.hh"
 #include "nix/flake/flakeref.hh"
+#include "nix/ref.hh"
 #include "nix/shared.hh"
 #include "nix/store-api.hh"
 
@@ -29,10 +31,10 @@ struct Flake {
 
 std::unique_ptr<Flake> get_flake(rust::String flakeRef, bool allowLookup);
 
-rust::String pluralize(
-    unsigned int count,
-    const rust::Str single,
-    const rust::Str plural);
+//rust::String pluralize(
+//    unsigned int count,
+//    const rust::Str single,
+//    const rust::Str plural);
 
 void hello();
 

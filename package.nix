@@ -1,6 +1,6 @@
 {
   rustPlatform,
-  nix,
+  nixVersions,
   pkg-config,
   stdenv,
   libclang,
@@ -32,8 +32,11 @@ rustPlatform.buildRustPackage {
 
   buildInputs = [
     boost
-    nix
+    nixVersions.nix_2_18
   ];
+
+  dontStrip = 1;
+  separateDebugInfo = true;
 
   RUST_BACKTRACE = "full"; # remove when bindgen works
 }

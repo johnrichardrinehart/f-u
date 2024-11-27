@@ -1,7 +1,8 @@
 fn pluralize_dogs(cnt: u32) -> String {
     return format!(
         "I'm pluralizing: {}",
-        libf_u::ffi::pluralize(cnt, "dog", "dogs")
+        "dog",
+        //libf_u::ffi::pluralize(cnt, "dog", "dogs")
     );
 }
 
@@ -11,5 +12,6 @@ fn main() {
     }
 
     let flake = libf_u::ffi::get_flake("github:nixos/nixpkgs".to_string(), true);
+//    println!("Name is: {}", flake);
     println!("Name is: {}", flake.get_name());
 }

@@ -1,3 +1,8 @@
+//#[link(name = "nixmain")]
+//extern {
+//    static settings: EvalSettings;
+//}
+
 #[cxx::bridge(namespace = "foo")]
 pub mod ffi {
     // C++ types and signatures exposed to Rust.
@@ -10,11 +15,12 @@ pub mod ffi {
         fn get_name(self: &Flake) -> String;
 
         fn get_flake(flakeRef: String, allowLookup: bool) -> UniquePtr<Flake>;
+        //fn get_flake(flakeRef: String, allowLookup: bool) -> String;
 
         // : is necessary when there's more than one `type`.
         fn list_inputs(self: &Flake) -> UniquePtr<CxxVector<FlakeInput>>;
 
-        fn pluralize(count: u32, single: &str, plural: &str) -> String;
+//        fn pluralize(count: u32, single: &str, plural: &str) -> String;
 
         fn hello();
     }
