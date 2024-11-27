@@ -24,11 +24,12 @@ std::unique_ptr<Flake> get_flake(rust::String flakeRef, bool allowLookup) {
 	nix::FlakeRef r = nix::parseFlakeRef(fetchSettings, flakeRef.c_str());
 
 	bool readOnly = false;
-	nix::EvalSettings settings = nix::EvalSettings{readOnly, {}};
+	auto settings = nix::EvalSettings(readOnly);
 
 	auto store = nix::openStore();
 
-	auto state = nix::EvalState({}, store, fetchSettings, settings);
+	nix::LookupPath path;
+	auto state = nix::EvalState(path, store, fetchSettings, settings);
 
 	nix::flake::Flake f = nix::flake::getFlake(state, r, allowLookup);
 
