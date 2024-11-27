@@ -32,7 +32,7 @@ rustPlatform.buildRustPackage {
 
   buildInputs = [
     boost
-    nix
+    (nix.overrideAttrs (old: { configureFlags = old.configureFlags ++ [ "--disable-gc" ]; }))
   ];
 
   RUST_BACKTRACE = "full"; # remove when bindgen works
