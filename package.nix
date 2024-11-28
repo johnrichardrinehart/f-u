@@ -1,11 +1,11 @@
-{ buildRustCrate, nix, stdenv, ... }: stdenv.mkDerivation {
+{ buildRustCrate, boost, nix, stdenv, ... }: stdenv.mkDerivation {
   name = "f-u++";
   version = "1.0.0";
   src = ./.;
-  buildInputs = [ nix ];
+  buildInputs = [ nix boost ];
+  # put the binary in /bin so that we can `nix run` it.
   installPhase = ''
-    touch $out;
-    cp ./main $out;
-    chmod +x $out;
+    mkdir -p $out/bin;
+    mv ./f-u++ $out/bin/f-u++;
   '';
 }
