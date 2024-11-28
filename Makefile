@@ -1,2 +1,7 @@
 main: src/main.cc
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -lnixutil -lnixexpr -std=c++20 -o f-u++
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ \
+		-lnixutil \
+		-lnixexpr \
+		-lnixmain \
+		-std=c++20 \
+		-o f-u++
