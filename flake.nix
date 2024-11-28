@@ -13,6 +13,12 @@
   {
     packages = {
       default = pkgs.callPackage ./package.nix {};
+      defaultLibcxxStdenv = pkgs.callPackage ./package.nix {
+        stdenv = pkgs.libcxxStdenv;
+      };
+      defaultClangStdenv = pkgs.callPackage ./package.nix {
+        stdenv = pkgs.clangStdenv;
+      };
     };
   });
 }
