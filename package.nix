@@ -32,7 +32,7 @@ rustPlatform.buildRustPackage {
 
   buildInputs = [
     boost
-    nix
+    (nix.overrideAttrs (old: { CXXFLAGS = (old.CXXFLAGS or "") + " -Og" + " -frecord-gcc-switches"; patches = old.patches ++ [ ./disable_sigsegv_handle.patch ]; }))
   ];
 
   RUST_BACKTRACE = "full"; # remove when bindgen works

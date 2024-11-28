@@ -11,7 +11,7 @@ fn main() {
         // warning _FORTIFY_SOURCE requires compiling with optimization (-O)
         // ```
         // So, I'm throwing this flag in here. Can probably be turned off.
-        .flag_if_supported("-O3")
+        .flag_if_supported("-Og")
         .define("SYSTEM", Some(format!("\"{}\"", system()).as_str()))
         .std("c++20")
         .includes(flakelib.include_paths.iter())
