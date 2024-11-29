@@ -3,5 +3,7 @@ main: src/main.cc
 		-lnixutil \
 		-lnixexpr \
 		-lnixmain \
+		-lnixstore \
+		-lnixfetchers \
 		-std=c++20 \
 		-o f-u++
