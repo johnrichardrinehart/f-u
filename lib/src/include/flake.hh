@@ -16,24 +16,6 @@
 
 namespace foo {
 
-struct FlakeInput { };
-
-struct Flake {
-  std::string name;
-  ~Flake();
-
-  rust::String get_name() const;
-
-  std::unique_ptr<std::vector<FlakeInput>> list_inputs() const;
-};
-
-std::unique_ptr<Flake> get_flake(rust::String flakeRef, bool allowLookup);
-
-rust::String pluralize(
-    unsigned int count,
-    const rust::Str single,
-    const rust::Str plural);
-
-void hello();
+void create_stuff();
 
 }
