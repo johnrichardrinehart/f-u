@@ -18,8 +18,9 @@
         pkgs = (import nixpkgs { inherit system; });
       in
       {
-        packages = {
+        packages = rec {
           default = pkgs.callPackage ./package.nix { };
+          dbg = pkgs.enableDebugging default;
           defaultLibcxxStdenv = pkgs.callPackage ./package.nix {
             stdenv = pkgs.libcxxStdenv;
           };

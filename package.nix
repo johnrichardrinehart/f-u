@@ -18,8 +18,12 @@ stdenv.mkDerivation {
   CXXFLAGS = [
     "-I${nix.dev}/include/nix "
     "-DSYSTEM='\"${stdenv.hostPlatform.system}\"'"
+    "-Og"
   ];
   # put the binary in /bin so that we can `nix run` it.
+  dontFixup = 1;
+  dontStrip = 1;
+
   installPhase = ''
     mkdir -p $out/bin;
     mv ./f-u++ $out/bin/f-u++;
