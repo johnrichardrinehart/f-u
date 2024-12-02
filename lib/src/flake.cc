@@ -5,14 +5,26 @@
 
 namespace foo {
 
-rust::String Flake::get_name() const {
-	return this->name;
+FlakeInput::FlakeInput(std::string id): id(id) {}
+
+rust::String FlakeInput::to_string() const {
+	std::string id = this->id;
+	return id;
 }
+
+Flake::Flake(nix::flake::Flake flake): f(flake) {}
 
 Flake::~Flake() { }
 
 std::unique_ptr<std::vector<FlakeInput>> Flake::list_inputs() const {
-  std::vector<FlakeInput> vec{ FlakeInput() };
+  std::vector<FlakeInput> vec {};
+
+  auto inputs = (this->f).inputs;
+
+  for (const auto & [key, _value] : inputs) {
+    vec.emplace_back(FlakeInput(std::string(key)));
+  }
+
   return std::make_unique<std::vector<FlakeInput>>(vec);
 }
 
@@ -33,7 +45,7 @@ std::unique_ptr<Flake> get_flake(rust::String flakeRef, bool allowLookup) {
 
 	nix::flake::Flake f = nix::flake::getFlake(state, r, allowLookup);
 
-	return std::make_unique<Flake>(Flake{ name: "abc" });
+	return std::make_unique<Flake>(Flake(f));
 }
 
 rust::String pluralize(

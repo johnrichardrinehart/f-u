@@ -5,9 +5,9 @@ pub mod ffi {
         include!("libf-u/src/include/flake.hh");
 
         type Flake;
-        type FlakeInput;
 
-        fn get_name(self: &Flake) -> String;
+        type FlakeInput;
+        fn to_string(self:&FlakeInput) -> String;
 
         fn get_flake(flakeRef: String, allowLookup: bool) -> UniquePtr<Flake>;
 

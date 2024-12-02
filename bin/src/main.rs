@@ -1,15 +1,16 @@
-fn pluralize_dogs(cnt: u32) -> String {
-    return format!(
-        "I'm pluralizing: {}",
-        libf_u::ffi::pluralize(cnt, "dog", "dogs")
-    );
-}
+use std::env::Args;
 
 fn main() {
-    for num in 0..3 {
-        println!("{}", pluralize_dogs(num));
-    }
+    let args = std::env::args();
+    let url = args.skip(1).next().expect("flake URL should be the 1st argument.");
 
-    let flake = libf_u::ffi::get_flake("github:nixos/nixpkgs".to_string(), true);
-    println!("Name is: {}", flake.get_name());
+
+    let flake = libf_u::ffi::get_flake(url.to_string(), true);
+
+    let inputs = flake.list_inputs();
+
+    println!("Found {} flake inputs.", inputs.len());
+    for input in inputs.iter() {
+        println!("input: {}", &input.to_string());
+    }
 }

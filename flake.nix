@@ -25,7 +25,8 @@
         };
         devShells = {
           default = packages.default.overrideAttrs (old: {
-            nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.rust-analyzer ];
+            nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.rust-analyzer pkgs.bear ];
+            CXX_FLAGS="-Og";
             RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
             CARGO_PROFILE_DEV_BUILD_OVERRIDE_DEBUG = true;
           });

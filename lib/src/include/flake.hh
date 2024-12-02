@@ -16,13 +16,23 @@
 
 namespace foo {
 
-struct FlakeInput { };
+struct FlakeInput {
+  std::string id;
+
+  FlakeInput(std::string id);
+
+  rust::String to_string() const;
+};
+
+typedef std::string FlakeId;
+
 
 struct Flake {
-  std::string name;
-  ~Flake();
+  nix::flake::Flake f;
 
-  rust::String get_name() const;
+  Flake(nix::flake::Flake flake);
+
+  ~Flake();
 
   std::unique_ptr<std::vector<FlakeInput>> list_inputs() const;
 };
