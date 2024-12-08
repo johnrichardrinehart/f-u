@@ -17,6 +17,7 @@ stdenv.mkDerivation {
   # "args.hh")
   CXXFLAGS = [
     "-I${nix.dev}/include/nix "
+    "-DHAVE_BOEHMGC=1"
     "-DSYSTEM='\"${stdenv.hostPlatform.system}\"'"
     "-Og"
   ];
