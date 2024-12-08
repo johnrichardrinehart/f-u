@@ -5,6 +5,33 @@
 
 namespace foo {
 
+nix::EvalState createEvalState() {
+  nix::fetchers::Settings fetchSettings;
+
+	bool readOnly = false;
+	auto settings = nix::EvalSettings(readOnly);
+
+	auto store = nix::openStore();
+
+	nix::LookupPath path;
+
+	return nix::EvalState(path, store, fetchSettings, settings);
+}
+
+EvalState::EvalState(): state(createEvalState()) {};
+
+std::unique_ptr<SourcePath> EvalState::findFile(rust::Str path) {
+
+  std::string_view str_view(path.data());
+  nix::SourcePath sourcePath = (this->state).findFile(str_view);
+
+  return std::make_unique<SourcePath>(SourcePath{sourcePath});
+}
+
+const EvalState & new_evalstate() {
+  return std::make_unique<EvalState>(EvalState());
+}
+
 FlakeInput::FlakeInput(std::string id): id(id) {}
 
 rust::String FlakeInput::to_string() const {
@@ -57,10 +84,6 @@ rust::String pluralize(
 	std::ostringstream os;
 	nix::pluralize(os, count, sview, pview);
 	return os.str();
-}
-
-void hello() {
-	std::cout << "hey there!" << std::endl;
 }
 
 } // namespace foo

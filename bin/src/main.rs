@@ -1,4 +1,6 @@
-use std::env::Args;
+use std::pin::{pin, Pin};
+
+use libf_u::ffi::EvalState;
 
 fn main() {
     let args = std::env::args();
@@ -13,4 +15,11 @@ fn main() {
     for input in inputs.iter() {
         println!("input: {}", &input.to_string());
     }
+
+    // let mut state: Pin<&mut libf_u::ffi::EvalState>;
+    let state: EvalState = EvalState{};
+    let pinned_state = pin!(state);
+    let res = pinned_state.findFile("abc");
+
+    println!("all done");
 }

@@ -16,6 +16,20 @@
 
 namespace foo {
 
+struct SourcePath {
+  nix::SourcePath path;
+};
+
+struct EvalState {
+  EvalState();
+
+  nix::EvalState state;
+
+  std::unique_ptr<SourcePath> findFile(rust::Str path);
+};
+
+const EvalState & new_evalstate();
+
 struct FlakeInput {
   std::string id;
 
@@ -43,7 +57,5 @@ rust::String pluralize(
     unsigned int count,
     const rust::Str single,
     const rust::Str plural);
-
-void hello();
 
 }
